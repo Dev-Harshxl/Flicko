@@ -1,17 +1,44 @@
-import {Text, View } from "react-native";
-import React from "react";
-import { Link } from "expo-router";
+import { ScrollView, Text, View, Image } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { images } from "../constants";
+import { router } from "expo-router";
+import But from "../components/But";
+import { StatusBar } from "expo-status-bar";
+import AnimatedCharacter from "../components/AnimatedCharacter";
 
-
-
-const index = () => {
+const Index = () => {
 
   return (
-    <View className="flex-1 items-center justify-center bg-primary">
-      <Text  className="text-3xl color-white" style={{fontFamily:"Poppins-Black"}}>Flicko</Text>
-      <Link href="./profile" className="color-reddy">Click to visit Profile</Link>
-    </View>
+    <SafeAreaView className="bg-[#F1C40F] h-full">
+    <ScrollView
+      contentContainerStyle={{
+        height: "100%",
+      }}
+    >
+      <View className="min-h-[85vh] items-center w-full px-4">
+        <Image
+          source={images.Flicklogo}
+          className="w-full h-[200px]"
+          resizeMode="contain"
+        />
+        <View className="w-full justify-center items-center">
+          <Text className="text-2xl mt-5 color-[#000] font-extrabold">
+            Flick It, Watch It, Love It
+          </Text>
+          <Image className="w-[250px] top-[-2px]" source={images.path}></Image>
+          <Text className="text-xl mt-5 font-Poppins color-[#000] font-extrabold">
+            High-quality entertainment for <Text>everyone.</Text>
+          </Text>
+        </View>
+
+        <AnimatedCharacter />
+
+        <But title="Continue with E-mail" handlePress={()=>router.push('/signin')} containerstyle="absolute bottom-[0]" />
+      </View>
+    </ScrollView>
+    <StatusBar style="dark" backgroundColor="#161622" />
+  </SafeAreaView>
   );
 };
 
-export default index;
+export default Index;

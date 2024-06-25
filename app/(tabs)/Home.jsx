@@ -1,12 +1,9 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-
+import { View, Text, Image, ScrollView } from "react-native";
+const card = require("../../assets/images/cards.png");
 const Home = () => {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
-  )
-}
+    <Text>HEllo</Text>
+  );
+};
 
-export default Home
+export default Home;
