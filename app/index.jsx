@@ -1,13 +1,16 @@
 import { ScrollView, Text, View, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../constants";
-import { router } from "expo-router";
+import { Redirect, router } from "expo-router";
 import But from "../components/But";
 import { StatusBar } from "expo-status-bar";
 import AnimatedCharacter from "../components/AnimatedCharacter";
+import { useGlobalContext } from "../context/GlobalProvider";
 
 const Index = () => {
+  const { loading, isLogged } = useGlobalContext();
 
+  if (!loading && isLogged) return <Redirect href="/home" />;
   return (
     <SafeAreaView className="bg-[#F1C40F] h-full">
     <ScrollView
@@ -33,7 +36,7 @@ const Index = () => {
 
         <AnimatedCharacter />
 
-        <But title="Continue with E-mail" handlePress={()=>router.push('/signin')} containerstyle="absolute bottom-[0]" />
+        <But title="Continue with E-mail" handlePress={()=>router.push('/signup')} containerstyle="absolute bottom-[0]" />
       </View>
     </ScrollView>
     <StatusBar style="dark" backgroundColor="#161622" />

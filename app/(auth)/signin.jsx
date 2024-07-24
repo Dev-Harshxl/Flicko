@@ -1,17 +1,42 @@
-import { View, Text, ScrollView, Image, TouchableOpacity} from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity, Alert} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import images from "../../constants/images";
 import FormComponent from "../../components/FormComponent"
 import { useState } from "react";
 import But from "../../components/But"
-import { Link } from "expo-router";
+import {Link, router } from "expo-router";
+import { getCurrentUser, signIn } from "../../lib/appwrite";
+import { useGlobalContext } from "../../context/GlobalProvider";
 
 const signin = () => {
+const {setUser, setIsLogged}=useGlobalContext();
+  const [isSubmitting, setSubmitting] = useState(false);
+
   const [form, setform]=useState({
     email: "",
     password: ""
 
   })
+  const submit=async ()=>{
+    // createuser();
+    if(!form.email || !form.password){
+      Alert.alert('Error', 'please fill all fields')
+    }
+    setSubmitting(true);
+  
+    try {
+      await signIn(form.email,form.password)
+      const result =await getCurrentUser();
+      setUser(result)
+      setIsLogged(true)
+
+      router.replace('/home')
+    } catch (error) {
+      Alert.alert('Error', error.message)
+    }finally{
+      setSubmitting(false)
+    }
+  }
   return (
     <SafeAreaView className="bg-[#F1C40F] h-full">
       <ScrollView
@@ -41,6 +66,14 @@ const signin = () => {
           <But
             title="Log In"
             containerstyle="w-[150] h-[45] mt-[50px]"
+            handlePress={submit}
+
+          />
+          <But
+            title=" In"
+            containerstyle="w-[150] h-[45] mt-[50px]"
+            handlePress={()=>router.push("/home")}
+
           />
 
 

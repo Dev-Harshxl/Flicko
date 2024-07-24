@@ -4,7 +4,6 @@
     "slug": "Flicko",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
     "scheme": "Flicko",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -13,10 +12,12 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "package":"com.harshal.flicko"
     },
     "android": {
       "adaptiveIcon": {
+        "package":"com.harshal.flicko",
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }

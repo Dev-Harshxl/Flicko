@@ -18,7 +18,7 @@ const FormComponent = ({title, handle , value, otherstyle}) => {
 
         {title==="Password" && (
             <TouchableOpacity className="justify-center" activeOpacity={0.9} onPress={()=>setshowpass(!showpass)}>
-                <Image resizeMode='contain' className="h-[40]" source={!showpass ?icons.eye: icons.eyeHide}/> 
+                <Image resizeMode='contain' className="h-[40]" source={!showpass ?icons.eye : icons.eyeHide}/> 
                 
             </TouchableOpacity>
         )}
